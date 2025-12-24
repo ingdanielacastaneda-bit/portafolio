@@ -1,0 +1,19 @@
+{
+  "name": "portafolio-profesional",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Portafolio profesional minimalista con Three.js y GSAP",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "three": "^0.160.0",
+    "gsap": "^3.12.5"
+  },
+  "devDependencies": {
+    "vite": "^5.0.8"
+  }
+}
+
