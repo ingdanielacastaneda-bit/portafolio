@@ -1,0 +1,447 @@
+:root {
+    --primary: #00f2ea;
+    --secondary: #ff0050;
+    --bg-dark: #050505;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: white;
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* Prevenir FOUC - mostrar contenido solo cuando esté listo */
+body:not(.loaded) {
+    opacity: 0;
+}
+
+body.loaded {
+    opacity: 1;
+    transition: opacity 0.3s ease-in;
+}
+
+h1, h2, h3 {
+    font-family: 'Orbitron', sans-serif;
+}
+
+#canvas-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: all;
+}
+
+.glass-panel {
+    background: radial-gradient(circle at top left, rgba(0, 242, 234, 0.18), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(255, 0, 80, 0.15), transparent 55%),
+                rgba(8, 8, 10, 0.85);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 22px 80px rgba(0, 0, 0, 0.85);
+}
+
+.scanline-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.25) 51%);
+    background-size: 100% 3px;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.25;
+    mix-blend-mode: soft-light;
+}
+
+.glitch-text:hover {
+    animation: glitch 0.35s cubic-bezier(.25, .46, .45, .94) both infinite;
+    color: var(--primary);
+}
+
+@keyframes glitch {
+    0% { transform: translate(0) }
+    20% { transform: translate(-1px, 1px) }
+    40% { transform: translate(-1px, -1px) }
+    60% { transform: translate(1px, 1px) }
+    80% { transform: translate(1px, -1px) }
+    100% { transform: translate(0) }
+}
+
+.section {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+    transform: scale(0.95) translateY(20px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    padding: 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Mostrar secciones solo cuando el body esté cargado */
+body.loaded .section {
+    display: flex;
+}
+
+.section.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1) translateY(0);
+    z-index: 20;
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+#loading-screen {
+    backdrop-filter: blur(10px);
+}
+
+#projects.section.active {
+    align-items: flex-start;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+}
+
+#main-header {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#about.section.active {
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+#about-card {
+    position: relative;
+    border: 1px solid rgba(6,182,212,0.2);
+    animation: subtleGlow 4s ease-in-out infinite;
+}
+
+#about-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 1rem;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(6,182,212,0.4), rgba(244,114,182,0.3), rgba(6,182,212,0.4));
+    background-size: 200% 200%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    animation: borderShift 5s ease-in-out infinite;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+@keyframes subtleGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(6,182,212,0.08), 0 0 30px rgba(6,182,212,0.04);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(6,182,212,0.12), 0 0 40px rgba(244,114,182,0.06);
+    }
+}
+
+@keyframes borderShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+
+/* Ocultar scrollbar cuando no es necesario */
+.section:not(.overflowing)::-webkit-scrollbar {
+    display: none;
+}
+
+.section:not(.overflowing) {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+@media (max-width: 640px) {
+    .section {
+        padding: 0.5rem;
+        align-items: flex-start;
+        padding-top: 1rem;
+    }
+}
+
+.custom-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: rgba(0, 242, 234, 0.3);
+    border-radius: 2px;
+}
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 242, 234, 0.5);
+}
+
+/* Ocultar scrollbar en Firefox */
+.section {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 242, 234, 0.3) transparent;
+}
+
+/* Scrollbar más sutil y elegante */
+.section::-webkit-scrollbar {
+    width: 4px;
+}
+.section::-webkit-scrollbar-track {
+    background: transparent;
+}
+.section::-webkit-scrollbar-thumb {
+    background: rgba(0, 242, 234, 0.2);
+    border-radius: 2px;
+}
+.section::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 242, 234, 0.4);
+}
+
+.project-card {
+    transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transform-style: preserve-3d;
+}
+.project-card:hover {
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.8);
+    border-color: var(--primary);
+}
+
+.nav-btn.active {
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+    text-shadow: 0 0 10px var(--primary);
+}
+
+.badge-tech {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+}
+
+@media (max-width: 640px) {
+    .glass-panel {
+        padding: 1rem !important;
+    }
+    
+    h1 {
+        font-size: 1.5rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    .project-card {
+        min-height: auto;
+    }
+    
+    #canvas-bg {
+        position: fixed;
+    }
+    
+    .section {
+        padding-bottom: 5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        position: relative;
+        min-height: auto;
+        align-items: flex-start;
+        padding-top: 0.5rem;
+    }
+    
+    main {
+        min-height: 100vh;
+    }
+    
+    .section.active {
+        position: relative;
+    }
+}
+
+@media (min-width: 769px) {
+    .section {
+        position: absolute;
+    }
+}
+
+/* Mejoras adicionales */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Efectos de hover mejorados */
+a, button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animación de entrada para las secciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section.active > * {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Mejora en el contraste para accesibilidad */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Skip to content link para accesibilidad */
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 100;
+    font-weight: bold;
+}
+
+.skip-to-content:focus {
+    top: 0;
+}
+
+/* Estilos para tooltips */
+.tooltip {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    pointer-events: none;
+    z-index: 1000;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: tooltipFadeIn 0.2s ease-out;
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+@keyframes tooltipFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#loading-screen {
+    backdrop-filter: blur(10px);
+}
+
+/* Efecto de brillo en los botones de redes sociales */
+.group:hover svg {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/* Mejora en las tarjetas de proyecto */
+.project-card {
+    will-change: transform;
+}
+
+/* Optimización de rendimiento */
+#canvas-bg,
+#name-canvas {
+    will-change: transform;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    /* Mejorar rendimiento de canvas */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Pausar animaciones cuando la página no es visible */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Animación de gradiente para el título */
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animate-gradient {
+    animation: gradient 3s ease infinite;
+}
+
+/* Estilos para el formulario de contacto */
+#contact-form input,
+#contact-form textarea {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+#contact-form label {
+    font-weight: 500;
+}
+
+#contact-form button:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+}
+
