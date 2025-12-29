@@ -1,134 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<<<<<<< HEAD
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portafolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div id="app">
-    <!-- Landing Section -->
-    <section class="landing" data-section="landing">
-      <div class="landing-content">
-        <h1 class="landing-text">Experiencia, calma, dominio técnico</h1>
-      </div>
-    </section>
-
-    <!-- Canvas Container -->
-    <div id="canvas-container"></div>
-
-    <!-- Main Content -->
-    <main class="main-content">
-      <!-- Intro Section -->
-      <section class="section intro-section" data-section="intro">
-        <div class="section-content">
-          <p class="intro-text">Arquitectura técnica sólida. Decisiones precisas. Resultados medibles.</p>
-        </div>
-      </section>
-
-      <!-- Projects Section -->
-      <section class="section projects-section" data-section="projects">
-        <div class="section-content">
-          <h2 class="section-title">Proyectos</h2>
-          
-          <div class="projects-grid">
-            <!-- Project 1 -->
-            <article class="project" data-project="1">
-              <div class="project-visual">
-                <div class="project-placeholder">Proyecto 01</div>
-              </div>
-              <div class="project-info">
-                <h3 class="project-title">Proyecto 01</h3>
-                <div class="project-meta">
-                  <p class="project-problem"><strong>Problema:</strong> [Placeholder]</p>
-                  <p class="project-decision"><strong>Decisión:</strong> [Placeholder]</p>
-                  <p class="project-result"><strong>Resultado:</strong> [Placeholder]</p>
-                </div>
-              </div>
-            </article>
-
-            <!-- Project 2 -->
-            <article class="project" data-project="2">
-              <div class="project-visual">
-                <div class="project-placeholder">Proyecto 02</div>
-              </div>
-              <div class="project-info">
-                <h3 class="project-title">Proyecto 02</h3>
-                <div class="project-meta">
-                  <p class="project-problem"><strong>Problema:</strong> [Placeholder]</p>
-                  <p class="project-decision"><strong>Decisión:</strong> [Placeholder]</p>
-                  <p class="project-result"><strong>Resultado:</strong> [Placeholder]</p>
-                </div>
-              </div>
-            </article>
-
-            <!-- Project 3 -->
-            <article class="project" data-project="3">
-              <div class="project-visual">
-                <div class="project-placeholder">Proyecto 03</div>
-              </div>
-              <div class="project-info">
-                <h3 class="project-title">Proyecto 03</h3>
-                <div class="project-meta">
-                  <p class="project-problem"><strong>Problema:</strong> [Placeholder]</p>
-                  <p class="project-decision"><strong>Decisión:</strong> [Placeholder]</p>
-                  <p class="project-result"><strong>Resultado:</strong> [Placeholder]</p>
-                </div>
-              </div>
-            </article>
-
-            <!-- Project 4 -->
-            <article class="project" data-project="4">
-              <div class="project-visual">
-                <div class="project-placeholder">Proyecto 04</div>
-              </div>
-              <div class="project-info">
-                <h3 class="project-title">Proyecto 04</h3>
-                <div class="project-meta">
-                  <p class="project-problem"><strong>Problema:</strong> [Placeholder]</p>
-                  <p class="project-decision"><strong>Decisión:</strong> [Placeholder]</p>
-                  <p class="project-result"><strong>Resultado:</strong> [Placeholder]</p>
-                </div>
-              </div>
-            </article>
-
-            <!-- Project 5 -->
-            <article class="project" data-project="5">
-              <div class="project-visual">
-                <div class="project-placeholder">Proyecto 05</div>
-              </div>
-              <div class="project-info">
-                <h3 class="project-title">Proyecto 05</h3>
-                <div class="project-meta">
-                  <p class="project-problem"><strong>Problema:</strong> [Placeholder]</p>
-                  <p class="project-decision"><strong>Decisión:</strong> [Placeholder]</p>
-                  <p class="project-result"><strong>Resultado:</strong> [Placeholder]</p>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section class="section contact-section" data-section="contact">
-        <div class="section-content">
-          <h2 class="section-title">Contacto</h2>
-          <p class="contact-text">[Placeholder - Información de contacto]</p>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <script type="module" src="/src/main.js"></script>
-</body>
-</html>
-
-=======
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portafolio de Karen Castañeda - Desarrolladora Backend/Fullstack especializada en Java, Spring Boot, arquitectura de sistemas y APIs REST">
@@ -149,34 +21,120 @@
     <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet"></noscript>
     <!-- Estilos críticos inline para evitar FOUC -->
     <style>
+        :root {
+            --primary: #00f2ea;
+            --secondary: #ff0050;
+            --bg-dark: #050505;
+        }
+        
         body {
-            background-color: #050505;
+            background-color: var(--bg-dark);
             color: white;
+            font-family: 'Rajdhani', sans-serif;
+            overflow: hidden;
             margin: 0;
-            opacity: 0;
-            transition: opacity 0.3s ease-in;
+            height: 100vh;
         }
-        body.loaded {
-            opacity: 1;
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
         }
-        #loading-screen {
+
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: all;
+        }
+
+        .glass-panel {
+            background: radial-gradient(circle at top left, rgba(0, 242, 234, 0.18), transparent 55%),
+                        radial-gradient(circle at bottom right, rgba(255, 0, 80, 0.15), transparent 55%),
+                        rgba(8, 8, 10, 0.85);
+            backdrop-filter: blur(16px) saturate(160%);
+            -webkit-backdrop-filter: blur(16px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 22px 80px rgba(0, 0, 0, 0.85);
+        }
+
+        .scanline-overlay {
             position: fixed;
             inset: 0;
-            background: #000;
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.25) 51%);
+            background-size: 100% 3px;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.25;
+            mix-blend-mode: soft-light;
         }
+
+        .glitch-text:hover {
+            animation: glitch 0.35s cubic-bezier(.25, .46, .45, .94) both infinite;
+            color: var(--primary);
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0) }
+            20% { transform: translate(-1px, 1px) }
+            40% { transform: translate(-1px, -1px) }
+            60% { transform: translate(1px, 1px) }
+            80% { transform: translate(1px, -1px) }
+            100% { transform: translate(0) }
+        }
+
         .section {
-            display: none;
-        }
-        body.loaded .section {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+            transform: scale(0.95) translateY(20px);
             display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
         }
+
         .section.active {
             opacity: 1;
             visibility: visible;
+            transform: scale(1) translateY(0);
+            z-index: 20;
+        }
+
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .project-card {
+            transition: transform 0.25s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transform-style: preserve-3d;
+        }
+        .project-card:hover {
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.8);
+            border-color: var(--primary);
+        }
+        
+        .nav-btn.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        .badge-tech {
+            font-size: 0.7rem;
+            letter-spacing: 0.06em;
         }
     </style>
     <link rel="stylesheet" href="styles.css">
@@ -531,7 +489,6 @@
 
         </div>
 
-
         <nav class="w-full pb-4 sm:pb-7 pt-2 sm:pt-3 flex justify-center z-50 fixed bottom-0 left-0 right-0 md:relative">
             <div class="glass-panel px-4 sm:px-6 py-2 sm:py-3 rounded-full flex gap-4 sm:gap-6 md:gap-8 items-center border border-white/10 backdrop-blur-xl bg-black/40">
                 <button onclick="navigateTo('home')" class="nav-btn active text-[0.65rem] sm:text-[0.7rem] font-semibold uppercase tracking-[0.22em] sm:tracking-[0.25em] text-white/60 hover:text-white transition-all">
@@ -557,4 +514,3 @@
     <script src="script.js" defer></script>
 </body>
 </html>
->>>>>>> 67d71a (links github)
